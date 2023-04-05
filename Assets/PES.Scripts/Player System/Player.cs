@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,17 @@ public class Player: MonoBehaviour {
     public int shirtNumber;
     public float moveSpeed = 5.0f;
     public float kickForce = 10.0f;
+    public float maxStamina = 100.0f;
+    public float stamina = 100.0f;
+    public float sprintSpeed = 8.0f;
+    public float sprintStaminaCost = 1.0f;
+    public float tacklingPower = 50.0f;
+    public float injuryLevel;
+    public float fatigueLevel;
+    public float foulingLevel;
+    public bool isOffside;
+    public float reactionTime;
+    public float communication;
     public Team team;
 
     private Rigidbody _rb;
@@ -46,7 +58,13 @@ public class Player: MonoBehaviour {
     {
         // Move the player in the specified direction
         _rb.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
-    }
+
+        // Consume stamina when sprinting
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+        {
+            _rb.MovePosition(transform.position + direction * sprintSpeed * Time.deltaTime);
+            stamina -= sprintStaminaCost;
+        }    }
 
     public void Pass(Vector3 direction)
     {
@@ -80,6 +98,36 @@ public class Player: MonoBehaviour {
         if (collision.gameObject.CompareTag("Ball"))
         {
             _hasBall = true;
+        }
+    }
+
+    internal bool IsTackling()
+    {
+        throw new
+         NotImplementedException();
+    }
+    
+    public void ControlInjuries(float injurySeverity, float recoveryTime)
+    {
+        // Define how injuries affect player performance
+        if (injurySeverity > 0.5f) {
+            speed -= 5.0f;
+            shotPower -= 10.0f;
+            passing -= 5.0f;
+            dribbling -= 5.0f;
+            defending -= 10.0f;
+            physicality -= 10.0f;
+        }
+
+        // Define how recovery time affects injury level
+        if (recoveryTime < 3.0f) {
+            injuryLevel -= 0.2f;
+        }
+        else if (recoveryTime < 7.0f) {
+            injuryLevel -= 0.1f;
+        }
+        else {
+            injuryLevel -= 0.05f;
         }
     }
 }
