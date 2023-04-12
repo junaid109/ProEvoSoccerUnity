@@ -14,13 +14,13 @@ To get started with the Pro Evolution Soccer 4 Remake, follow these steps:
 - Clone the repository to your local machine.
 - Install the latest version of Unity (version 2021.3.20f1 or later).
 - Open the Unity project and load the game scene.
-- Build and run the game on a PlayStation 2 emulator or a physical PlayStation 2 console.
+- Build and run the game on a WINDOWS, LINUX OR MAC
 
 # Features
 - Updated graphics and improved gameplay mechanics.
 - New game modes, including a tournament mode and online multiplayer.
-- Support for both emulated and physical PlayStation 2 consoles.
-- Controller support for PlayStation 2 controllers and other compatible controllers.
+- Support for WINDOWS, LINUX OR MAC.
+- Controller support for PC keyboard or game controllers ps4, xbox.
 
 # Contributing
 We welcome contributions to the project! If you would like to contribute, please follow these steps:
